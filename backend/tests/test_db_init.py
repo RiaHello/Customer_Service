@@ -5,7 +5,6 @@
 import bcrypt
 import pytest
 from sqlalchemy import text
-
 from src.db.models import Base
 from src.db.session import engine
 
@@ -73,7 +72,7 @@ async def test_password_bcrypt_hashed():
     assert password_hash.startswith("$2b$"), f"密码不是 bcrypt 哈希: {password_hash[:10]}"
 
     # 验证密码正确性
-    assert bcrypt.checkpw("password123".encode("utf-8"), password_hash.encode("utf-8")), "密码校验失败"
+    assert bcrypt.checkpw(b"password123", password_hash.encode("utf-8")), "密码校验失败"
 
 
 @pytest.mark.asyncio

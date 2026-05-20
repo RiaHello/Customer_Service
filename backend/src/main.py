@@ -1,7 +1,8 @@
 """FastAPI Application Entry Point using PyCore"""
 from pycore.api import APIConfig, APIServer
 from pycore.core import Logger, LoggerConfig, LogLevel, get_logger
-from src.api.routes import health
+from src.api.middleware.auth_middleware import AuthMiddleware
+from src.api.routes import auth, health, test
 from src.core.config import settings
 
 # 配置日志
@@ -37,8 +38,14 @@ def shutdown_app():
 server.on_startup(init_app)
 server.on_shutdown(shutdown_app)
 
+# 注册认证中间件
+server.app.add_middleware(AuthMiddleware)
+logger.info("✓ JWT Authentication middleware registered")
+
 # 注册路由
 server.include_router(health.router)
+server.include_router(test.router)
+server.include_router(auth.router)
 
 # 导出 app 供 uvicorn 使用
 app = server.app

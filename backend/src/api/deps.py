@@ -1,27 +1,39 @@
-"""依赖注入模块
-基于 pycore/api/deps.py 模板扩展
 """
-from collections.abc import AsyncGenerator
+API Dependencies - FastAPI 依赖注入函数
 
-from sqlalchemy.ext.asyncio import AsyncSession
+提供常用的依赖项（如数据库会话、当前用户等）。
+"""
+from typing import Annotated, Any
 
-# from src.db.session import async_session
+from fastapi import Depends, HTTPException, Request
 
 
-async def get_db() -> AsyncGenerator[AsyncSession, None]:
+# 当前用户依赖
+def get_current_user(request: Request) -> dict[str, Any]:
     """
-    数据库会话依赖注入
+    获取当前认证用户信息（依赖注入）
 
-    Yields:
-        AsyncSession: 异步数据库会话
+    从请求状态中提取用户信息（由认证中间件注入）。
 
-    注意：当前为骨架实现，待数据库初始化后启用
+    Args:
+        request: FastAPI 请求对象
+
+    Returns:
+        dict: 用户信息（包含 user_id, username, role）
+
+    Raises:
+        HTTPException: 如果用户信息不存在（不应发生，因为中间件已验证）
     """
-    # async with async_session() as session:
-    #     try:
-    #         yield session
-    #         await session.commit()
-    #     except Exception:
-    #         await session.rollback()
-    #         raise
-    raise NotImplementedError("数据库会话暂未初始化，请先完成 B00-1 数据库初始化任务")
+    # 认证中间件已将用户信息注入到 request.state.user
+    user_info: dict[str, Any] | None = getattr(request.state, "user", None)
+
+    if user_info is None:
+        # 理论上不应到达这里，因为中间件已经验证过
+        # 如果到达这里，说明中间件配置有问题
+        raise HTTPException(status_code=401, detail="Unauthorized")
+
+    return user_info
+
+
+# 类型别名：当前用户依赖
+CurrentUser = Annotated[dict[str, Any], Depends(get_current_user)]

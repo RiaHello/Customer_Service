@@ -122,6 +122,73 @@
 
 ---
 
+### T-007: B00-4 JWT Token 认证中间件
+
+**任务概述**：实现 JWT Token 认证系统，包括 Token 生成与验证函数、认证中间件、依赖注入函数 (get_current_user) 和单元测试。
+
+**技术要点**：
+- **JWT Token 结构**：使用 python-jose 库生成和验证 JWT Token，Token 包含 `sub`(user_id)、`username`、`role` 和 `exp`(过期时间)
+- **认证中间件实现**：使用 Starlette 的 BaseHTTPMiddleware，拦截所有 `/api/*` 请求（除白名单路径）
+- **白名单路径**：`/health` 和 `/api/auth/login` 免认证可访问
+- **Token 注入**：中间件验证 Token 后将用户信息注入 `request.state.user`，供后续路由处理器使用
+- **依赖注入**：通过 `get_current_user()` 函数从 `request.state` 提取用户信息
+- **错误处理**：无 Token 返回 401 Unauthorized，Token 过期返回 401 Token expired，Token 无效返回 401 Invalid token
+
+**陷阱与避坑**：
+1. **中间件返回类型错误**：
+   - ❌ 错误：中间件返回 `error_response()` 字典（`return error_response("msg", "CODE", 401)`）
+   - ✓ 正确：中间件必须返回 FastAPI Response 对象（`return JSONResponse(status_code=401, content={...})`）
+   - 原因：Starlette 中间件的 `dispatch()` 方法必须返回 Response 对象，不能返回字典
+
+2. **JWT 配置从环境变量读取**：
+   - ❌ 错误：硬编码 JWT_SECRET_KEY 或使用默认值
+   - ✓ 正确：从 `backend/.env` 读取配置，使用 `settings.jwt_secret_key`
+   - 原因：生产环境必须使用强密钥，且不能提交到代码仓库
+
+3. **Token 过期时间使用 UTC**：
+   - ❌ 错误：使用 `datetime.now()` 或 `timezone.utc`
+   - ✓ 正确：使用 `datetime.now(UTC)` (Python 3.11+ 推荐)
+   - 原因：JWT Token 的 `exp` 字段必须使用 UTC 时间，避免时区问题
+
+4. **异常链处理**：
+   - ❌ 错误：在 except 块中直接 `raise ValueError("Token expired")`
+   - ✓ 正确：使用 `raise ValueError("Token expired") from None`
+   - 原因：ruff B904 规则要求显式指定异常链（`from err` 或 `from None`），避免异常上下文污染
+
+5. **依赖注入函数的异常类型**：
+   - ❌ 错误：`raise error_response("Unauthorized", "UNAUTHORIZED", 401)` (字典不是异常)
+   - ✓ 正确：`raise HTTPException(status_code=401, detail="Unauthorized")`
+   - 原因：FastAPI 依赖注入函数只能抛出 HTTPException，不能返回字典或其他类型
+
+6. **类型注解完整性**：
+   - ❌ 错误：函数返回 `dict` 类型（泛型不完整）
+   - ✓ 正确：函数返回 `dict[str, Any]` 类型
+   - 原因：mypy 要求 dict 类型指定 key 和 value 的类型
+
+7. **测试覆盖场景**：
+   - Token 生成与验证（有效、过期、无效签名、缺少字段）
+   - 中间件拦截（无 Token、有效 Token、过期 Token、格式错误的 Authorization 头）
+   - 白名单路径（`/health`、`/api/auth/login` 无需认证可访问）
+
+**验收通过标准**：
+- ✓ 单元测试通过（12 个测试用例，覆盖 Token 生成、验证、过期、中间件拦截场景）
+- ✓ Lint passes（`ruff check` 无错误）
+- ✓ Typecheck passes（`mypy` 无错误）
+- ✓ 未携带 Token 访问受保护接口返回 401
+- ✓ 有效 Token 可访问受保护接口
+- ✓ `/api/auth/login` 与 `/health` 无需 Token 即可访问
+- ✓ 不硬编码 JWT_SECRET_KEY（从 `.env` 读取）
+
+**后续任务建议**：
+- 下一步实现 T-010 用户登录功能闭环（B01），使用 bcrypt 校验密码并返回 JWT Token
+- 登录接口需要调用 `create_access_token()` 生成 Token，并在响应中返回 `access_token` 和 `user` 信息
+- 前端登录页将 Mock 切换为真实 API（`VITE_USE_MOCK=false`），Token 持久化到 localStorage 并在 Axios 拦截器注入 `Authorization` 头
+
+**系统级经验标注**：
+- 无新的跨项目通用问题需要回传系统级经验
+
+---
+
 （后续任务经验将在开发过程中追加）
 
 ---
