@@ -1,0 +1,25 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - banner [ref=e40]:
+      - generic [ref=e42]:
+        - generic [ref=e43]: 🤖
+        - generic [ref=e44]: 智能客服系统
+      - navigation [ref=e45]:
+        - link "员工端" [ref=e46] [cursor=pointer]:
+          - /url: /employee
+        - link "坐席端" [ref=e47] [cursor=pointer]:
+          - /url: /agent
+        - link "知识库管理" [ref=e48] [cursor=pointer]:
+          - /url: /knowledge
+      - generic [ref=e50]:
+        - generic [ref=e51]: employee1
+        - button "退出" [ref=e52] [cursor=pointer]
+    - main [ref=e4]:
+      - generic [ref=e53]:
+        - heading "员工端" [level=1] [ref=e54]
+        - paragraph [ref=e55]: 咨询对话功能即将上线
+  - generic [ref=e28]:
+    - generic "Toggle devtools panel" [ref=e29] [cursor=pointer]:
+      - img [ref=e30]
+    - generic "Toggle Component Inspector" [ref=e35] [cursor=pointer]:
+      - img [ref=e36]

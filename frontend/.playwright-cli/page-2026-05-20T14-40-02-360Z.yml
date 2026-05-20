@@ -1,0 +1,81 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - banner [ref=e41]:
+      - generic [ref=e43]:
+        - generic [ref=e44]: 🤖
+        - generic [ref=e45]: 智能客服系统
+      - navigation [ref=e46]:
+        - link "员工端" [ref=e47] [cursor=pointer]:
+          - /url: /employee
+        - link "坐席端" [ref=e48] [cursor=pointer]:
+          - /url: /agent
+        - link "知识库管理" [ref=e49] [cursor=pointer]:
+          - /url: /knowledge
+      - generic [ref=e51]:
+        - generic [ref=e52]: 张三
+        - button "退出" [ref=e53] [cursor=pointer]
+    - main [ref=e4]:
+      - generic [ref=e54]:
+        - generic [ref=e55]:
+          - heading "工单列表" [level=2] [ref=e57]
+          - generic [ref=e58]:
+            - button "全部" [ref=e59] [cursor=pointer]
+            - button "进行中" [ref=e60] [cursor=pointer]
+            - button "已完结" [ref=e61] [cursor=pointer]
+          - generic [ref=e62]:
+            - generic [ref=e63] [cursor=pointer]:
+              - generic [ref=e64]: 客户反馈无法查看历史订单详情，需要协助解...
+              - generic [ref=e65]: 客户反馈无法查看历史订单详情，需要协助解决...
+              - generic [ref=e66]:
+                - generic [ref=e67]: 10:30
+                - generic [ref=e68]: 进行中
+            - generic [ref=e69] [cursor=pointer]:
+              - generic [ref=e70]: 用户询问退款流程和预计到账时间...
+              - generic [ref=e71]: 用户询问退款流程和预计到账时间...
+              - generic [ref=e72]:
+                - generic [ref=e73]: 10:15
+                - generic [ref=e74]: 进行中
+            - generic [ref=e75] [cursor=pointer]:
+              - generic [ref=e76]: 多次输入错误密码导致账户被锁定，请求解锁...
+              - generic [ref=e77]: 多次输入错误密码导致账户被锁定，请求解锁...
+              - generic [ref=e78]:
+                - generic [ref=e79]: 09:45
+                - generic [ref=e80]: 已完结
+            - generic [ref=e81] [cursor=pointer]:
+              - generic [ref=e82]: 客户建议增加批量导出功能，已记录并反馈....
+              - generic [ref=e83]: 客户建议增加批量导出功能，已记录并反馈...
+              - generic [ref=e84]:
+                - generic [ref=e85]: 09:20
+                - generic [ref=e86]: 已完结
+            - generic [ref=e87] [cursor=pointer]:
+              - generic [ref=e88]: 企业用户申请开具增值税专用发票...
+              - generic [ref=e89]: 企业用户申请开具增值税专用发票...
+              - generic [ref=e90]:
+                - generic [ref=e91]: 昨天
+                - generic [ref=e92]: 已完结
+        - generic [ref=e93]:
+          - generic [ref=e94]:
+            - img [ref=e96]
+            - generic [ref=e98]: 人工客服处理中
+          - generic [ref=e104]:
+            - generic [ref=e105]:
+              - generic [ref=e106]:
+                - img [ref=e108]
+                - generic [ref=e112]: 我的订单列表页面显示空白，无法查看历史订单
+              - generic [ref=e113]:
+                - img [ref=e115]
+                - generic [ref=e118]: 您好！感谢您的反馈。请问您是在哪个页面遇到这个问题的？能否提供一下您的账号或订单号？
+              - generic [ref=e119]:
+                - img [ref=e121]
+                - generic [ref=e125]: 在"我的订单"页面，账号是 user001
+              - generic [ref=e126]:
+                - img [ref=e128]
+                - generic [ref=e131]: 我是人工客服小李，我来帮您处理。我看到您的账号数据正常，可能是缓存问题，建议您清除浏览器缓存后重试。
+            - generic [ref=e133]:
+              - textbox "输入您的问题..." [ref=e134]
+              - button "发送" [disabled] [ref=e136]
+  - generic [ref=e29]:
+    - generic "Toggle devtools panel" [ref=e30] [cursor=pointer]:
+      - img [ref=e31]
+    - generic "Toggle Component Inspector" [ref=e36] [cursor=pointer]:
+      - img [ref=e37]

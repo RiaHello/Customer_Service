@@ -1,0 +1,36 @@
+- generic [active] [ref=e1]:
+  - main [ref=e4]:
+    - generic [ref=e6]:
+      - generic [ref=e7]:
+        - heading "智能客服系统" [level=1] [ref=e8]
+        - paragraph [ref=e9]: 请输入您的账号密码登录系统
+      - generic [ref=e10]:
+        - generic [ref=e11]:
+          - generic [ref=e12]: 账号
+          - textbox "账号" [ref=e13]:
+            - /placeholder: 请输入账号
+            - text: employee1
+        - generic [ref=e14]:
+          - generic [ref=e15]: 密码
+          - textbox "密码" [ref=e16]:
+            - /placeholder: 请输入密码
+            - text: wrongpass
+        - generic [ref=e17]:
+          - generic [ref=e18] [cursor=pointer]:
+            - checkbox "记住我" [ref=e19]
+            - generic [ref=e20]: 记住我
+          - link "忘记密码？" [ref=e21] [cursor=pointer]:
+            - /url: "#"
+        - generic [ref=e41]: 用户名或密码错误
+        - button "登录" [ref=e22] [cursor=pointer]
+      - generic [ref=e23]:
+        - paragraph [ref=e24]:
+          - strong [ref=e25]: "[Mock 测试账号]"
+        - paragraph [ref=e26]: "员工账号: employee1 / 123456"
+        - paragraph [ref=e27]: "坐席账号: agent1 / 123456"
+        - paragraph [ref=e28]: "管理员: admin / 123456"
+  - generic [ref=e29]:
+    - generic "Toggle devtools panel" [ref=e30] [cursor=pointer]:
+      - img [ref=e31]
+    - generic "Toggle Component Inspector" [ref=e36] [cursor=pointer]:
+      - img [ref=e37]

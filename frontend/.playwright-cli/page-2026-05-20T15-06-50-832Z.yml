@@ -1,0 +1,89 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - banner [ref=e41]:
+      - generic [ref=e43]:
+        - generic [ref=e44]: 🤖
+        - generic [ref=e45]: 智能客服系统
+      - navigation [ref=e46]:
+        - link "员工端" [ref=e47] [cursor=pointer]:
+          - /url: /employee
+        - link "坐席端" [ref=e48] [cursor=pointer]:
+          - /url: /agent
+        - link "知识库管理" [ref=e49] [cursor=pointer]:
+          - /url: /knowledge
+      - generic [ref=e51]:
+        - generic [ref=e52]: 张三
+        - button "退出" [ref=e53] [cursor=pointer]
+    - main [ref=e4]:
+      - generic [ref=e54]:
+        - generic [ref=e55]:
+          - heading "工单列表" [level=2] [ref=e57]
+          - generic [ref=e58]:
+            - button "全部" [ref=e59] [cursor=pointer]
+            - button "进行中" [ref=e60] [cursor=pointer]
+            - button "已完结" [ref=e61] [cursor=pointer]
+          - generic [ref=e62]:
+            - generic [ref=e117] [cursor=pointer]:
+              - generic [ref=e118]: 您好！我是智能客服助手。关于您提到的"我...
+              - generic [ref=e119]: 您好！我是智能客服助手。关于您提到的"我的电脑无法开机，怎么办？..."，我正在为您查询相关信息。请稍候片刻。
+              - generic [ref=e120]:
+                - generic [ref=e121]: 15:06
+                - generic [ref=e122]: 进行中
+            - generic [ref=e63] [cursor=pointer]:
+              - generic [ref=e64]: 您好！我是智能客服助手，请问如何修改我的...
+              - generic [ref=e65]: 您好！我是智能客服助手，请问如何修改我的个人资料？
+              - generic [ref=e66]:
+                - generic [ref=e67]: 10:45
+                - generic [ref=e68]: 进行中
+            - generic [ref=e69] [cursor=pointer]:
+              - generic [ref=e70]: 客户反馈无法查看历史订单详情，需要协助解...
+              - generic [ref=e71]: 客户反馈无法查看历史订单详情，需要协助解决...
+              - generic [ref=e72]:
+                - generic [ref=e73]: 10:30
+                - generic [ref=e74]: 进行中
+            - generic [ref=e75] [cursor=pointer]:
+              - generic [ref=e76]: 用户询问退款流程和预计到账时间...
+              - generic [ref=e77]: 用户询问退款流程和预计到账时间...
+              - generic [ref=e78]:
+                - generic [ref=e79]: 10:15
+                - generic [ref=e80]: 进行中
+            - generic [ref=e81] [cursor=pointer]:
+              - generic [ref=e82]: 多次输入错误密码导致账户被锁定，请求解锁...
+              - generic [ref=e83]: 多次输入错误密码导致账户被锁定，请求解锁...
+              - generic [ref=e84]:
+                - generic [ref=e85]: 09:45
+                - generic [ref=e86]: 已完结
+            - generic [ref=e87] [cursor=pointer]:
+              - generic [ref=e88]: 客户建议增加批量导出功能，已记录并反馈....
+              - generic [ref=e89]: 客户建议增加批量导出功能，已记录并反馈...
+              - generic [ref=e90]:
+                - generic [ref=e91]: 09:20
+                - generic [ref=e92]: 已完结
+            - generic [ref=e93] [cursor=pointer]:
+              - generic [ref=e94]: 企业用户申请开具增值税专用发票...
+              - generic [ref=e95]: 企业用户申请开具增值税专用发票...
+              - generic [ref=e96]:
+                - generic [ref=e97]: 昨天
+                - generic [ref=e98]: 已完结
+        - generic [ref=e99]:
+          - generic [ref=e100]:
+            - img [ref=e102]
+            - generic [ref=e104]: AI助手
+          - generic [ref=e105]:
+            - generic [ref=e106]:
+              - generic [ref=e123]:
+                - img [ref=e125]
+                - generic [ref=e129]: 我的电脑无法开机，怎么办？
+              - generic [ref=e130]:
+                - img [ref=e132]
+                - generic [ref=e135]: 您好！我是智能客服助手。关于您提到的"我的电脑无法开机，怎么办？..."，我正在为您查询相关信息。请稍候片刻。
+            - generic [ref=e113]:
+              - textbox "输入您的问题..." [ref=e114]
+              - generic [ref=e115]:
+                - button "转人工" [ref=e136] [cursor=pointer]
+                - button "发送" [disabled] [ref=e116]
+  - generic [ref=e29]:
+    - generic "Toggle devtools panel" [ref=e30] [cursor=pointer]:
+      - img [ref=e31]
+    - generic "Toggle Component Inspector" [ref=e36] [cursor=pointer]:
+      - img [ref=e37]

@@ -1,0 +1,65 @@
+- generic [ref=e1]:
+  - generic [ref=e3]:
+    - banner [ref=e41]:
+      - generic [ref=e43]:
+        - generic [ref=e44]: 🤖
+        - generic [ref=e45]: 智能客服系统
+      - navigation [ref=e46]:
+        - link "员工端" [ref=e47] [cursor=pointer]:
+          - /url: /employee
+        - link "坐席端" [ref=e48] [cursor=pointer]:
+          - /url: /agent
+        - link "知识库管理" [ref=e49] [cursor=pointer]:
+          - /url: /knowledge
+      - generic [ref=e51]:
+        - generic [ref=e52]: 张三
+        - button "退出" [ref=e53] [cursor=pointer]
+    - main [ref=e4]:
+      - generic [ref=e54]:
+        - generic [ref=e55]:
+          - heading "工单列表" [level=2] [ref=e57]
+          - generic [ref=e58]:
+            - button "全部" [ref=e59] [cursor=pointer]
+            - button "进行中" [active] [ref=e60] [cursor=pointer]
+            - button "已完结" [ref=e61] [cursor=pointer]
+          - generic [ref=e62]:
+            - generic [ref=e181] [cursor=pointer]:
+              - generic [ref=e182]: 您好！我是智能客服助手。关于您提到的"我...
+              - generic [ref=e183]: 您好！我是智能客服助手。关于您提到的"我的电脑无法开机，怎么办？..."，我正在为您查询相关信息。请稍候片刻。
+              - generic [ref=e184]:
+                - generic [ref=e185]: 15:06
+                - generic [ref=e186]: 进行中
+            - generic [ref=e187] [cursor=pointer]:
+              - generic [ref=e188]: 您好！我是智能客服助手，请问如何修改我的...
+              - generic [ref=e189]: 您好！我是智能客服助手，请问如何修改我的个人资料？
+              - generic [ref=e190]:
+                - generic [ref=e191]: 10:45
+                - generic [ref=e192]: 进行中
+            - generic [ref=e193] [cursor=pointer]:
+              - generic [ref=e194]: 客户反馈无法查看历史订单详情，需要协助解...
+              - generic [ref=e195]: 客户反馈无法查看历史订单详情，需要协助解决...
+              - generic [ref=e196]:
+                - generic [ref=e197]: 10:30
+                - generic [ref=e198]: 进行中
+            - generic [ref=e199] [cursor=pointer]:
+              - generic [ref=e200]: 用户询问退款流程和预计到账时间...
+              - generic [ref=e201]: 用户询问退款流程和预计到账时间...
+              - generic [ref=e202]:
+                - generic [ref=e203]: 10:15
+                - generic [ref=e204]: 进行中
+        - generic [ref=e99]:
+          - generic [ref=e100]:
+            - img [ref=e102]
+            - generic [ref=e104]: AI助手
+          - generic [ref=e105]:
+            - generic [ref=e205]:
+              - img [ref=e207]
+              - paragraph [ref=e209]: 输入您的问题开始咨询
+            - generic [ref=e113]:
+              - textbox "输入您的问题..." [ref=e114]
+              - button "发送" [disabled] [ref=e116]
+  - generic [ref=e29]:
+    - generic "Toggle devtools panel" [ref=e30] [cursor=pointer]:
+      - img [ref=e31]
+    - generic "Toggle Component Inspector" [ref=e36] [cursor=pointer]:
+      - img [ref=e37]

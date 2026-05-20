@@ -1,0 +1,55 @@
+- generic [ref=e1]:
+  - generic [ref=e3]:
+    - banner [ref=e41]:
+      - generic [ref=e43]:
+        - generic [ref=e44]: 🤖
+        - generic [ref=e45]: 智能客服系统
+      - navigation [ref=e46]:
+        - link "员工端" [ref=e47] [cursor=pointer]:
+          - /url: /employee
+        - link "坐席端" [ref=e48] [cursor=pointer]:
+          - /url: /agent
+        - link "知识库管理" [ref=e49] [cursor=pointer]:
+          - /url: /knowledge
+      - generic [ref=e51]:
+        - generic [ref=e52]: 张三
+        - button "退出" [ref=e53] [cursor=pointer]
+    - main [ref=e4]:
+      - generic [ref=e54]:
+        - generic [ref=e55]:
+          - heading "工单列表" [level=2] [ref=e57]
+          - generic [ref=e58]:
+            - button "全部" [ref=e59] [cursor=pointer]
+            - button "进行中" [ref=e60] [cursor=pointer]
+            - button "已完结" [active] [ref=e61] [cursor=pointer]
+          - generic [ref=e62]:
+            - generic [ref=e181] [cursor=pointer]:
+              - generic [ref=e182]: 多次输入错误密码导致账户被锁定，请求解锁...
+              - generic [ref=e183]: 多次输入错误密码导致账户被锁定，请求解锁...
+              - generic [ref=e184]:
+                - generic [ref=e185]: 09:45
+                - generic [ref=e186]: 已完结
+            - generic [ref=e187] [cursor=pointer]:
+              - generic [ref=e188]: 客户建议增加批量导出功能，已记录并反馈....
+              - generic [ref=e189]: 客户建议增加批量导出功能，已记录并反馈...
+              - generic [ref=e190]:
+                - generic [ref=e191]: 09:20
+                - generic [ref=e192]: 已完结
+            - generic [ref=e193] [cursor=pointer]:
+              - generic [ref=e194]: 企业用户申请开具增值税专用发票...
+              - generic [ref=e195]: 企业用户申请开具增值税专用发票...
+              - generic [ref=e196]:
+                - generic [ref=e197]: 昨天
+                - generic [ref=e198]: 已完结
+        - generic [ref=e93]:
+          - generic [ref=e94]:
+            - img [ref=e96]
+            - generic [ref=e98]: AI助手
+          - generic [ref=e176]:
+            - img [ref=e178]
+            - paragraph [ref=e180]: 选择一个工单开始对话
+  - generic [ref=e29]:
+    - generic "Toggle devtools panel" [ref=e30] [cursor=pointer]:
+      - img [ref=e31]
+    - generic "Toggle Component Inspector" [ref=e36] [cursor=pointer]:
+      - img [ref=e37]
