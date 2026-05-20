@@ -2,15 +2,19 @@ import api from './api'
 import type { ApiResponse } from '../types/auth'
 import type {
   TicketListResponse,
+  PendingTicketListResponse,
   TicketDetail,
   CreateTicketResponse,
   TransferTicketResponse
 } from '../types/ticket'
 import {
   mockGetTickets,
+  mockGetPendingTickets,
   mockGetTicketDetail,
   mockCreateTicket,
-  mockTransferTicket
+  mockTransferTicket,
+  mockPickTicket,
+  mockCompleteTicket
 } from '../mocks/tickets'
 
 const USE_MOCK = import.meta.env.VITE_USE_MOCK === 'true'
@@ -27,6 +31,21 @@ export const ticketsService = {
     }
 
     const response = await api.get<ApiResponse<TicketListResponse>>('/tickets', { params })
+    return response.data
+  },
+
+  // 获取待处理工单列表（坐席端专用）
+  async getPendingTickets(params: {
+    page?: number
+    page_size?: number
+  }): Promise<ApiResponse<PendingTicketListResponse>> {
+    if (USE_MOCK) {
+      return Promise.resolve(mockGetPendingTickets(params))
+    }
+
+    const response = await api.get<ApiResponse<PendingTicketListResponse>>('/tickets/pending', {
+      params
+    })
     return response.data
   },
 
@@ -60,6 +79,36 @@ export const ticketsService = {
       `/tickets/${ticketId}/transfer`,
       {}
     )
+    return response.data
+  },
+
+  // 坐席接单
+  async pickTicket(
+    ticketId: number
+  ): Promise<
+    ApiResponse<{ ticket_id: number; status: 'in_progress'; agent_id: number; picked_at: string }>
+  > {
+    if (USE_MOCK) {
+      return Promise.resolve(mockPickTicket(ticketId))
+    }
+
+    const response = await api.put<
+      ApiResponse<{ ticket_id: number; status: 'in_progress'; agent_id: number; picked_at: string }>
+    >(`/tickets/${ticketId}/pick`, {})
+    return response.data
+  },
+
+  // 结束工单
+  async completeTicket(
+    ticketId: number
+  ): Promise<ApiResponse<{ ticket_id: number; status: 'completed'; completed_at: string }>> {
+    if (USE_MOCK) {
+      return Promise.resolve(mockCompleteTicket(ticketId))
+    }
+
+    const response = await api.put<
+      ApiResponse<{ ticket_id: number; status: 'completed'; completed_at: string }>
+    >(`/tickets/${ticketId}/complete`, {})
     return response.data
   }
 }

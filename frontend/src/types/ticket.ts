@@ -10,6 +10,17 @@ export interface TicketListItem {
   message_count: number
 }
 
+// 待处理工单列表项（GET /api/tickets/pending 返回的列表项字段）
+export interface PendingTicketListItem {
+  id: number
+  status: 'pending'
+  last_message: string
+  created_at: string
+  wait_time_seconds: number
+  user_id: number
+  message_count: number
+}
+
 // 工单（兼容列表和详情，保留可选的详情字段）
 export interface Ticket extends TicketListItem {
   user_id?: number
@@ -36,6 +47,13 @@ export interface Message {
 
 export interface TicketListResponse {
   items: TicketListItem[]
+  total: number
+  page: number
+  page_size: number
+}
+
+export interface PendingTicketListResponse {
+  items: PendingTicketListItem[]
   total: number
   page: number
   page_size: number
