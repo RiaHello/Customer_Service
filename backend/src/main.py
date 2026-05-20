@@ -1,52 +1,44 @@
-"""FastAPI Application Entry Point"""
-from contextlib import asynccontextmanager
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-from src.core.config import settings
+"""FastAPI Application Entry Point using PyCore"""
+from pycore.api import APIConfig, APIServer
+from pycore.core import Logger, LoggerConfig, LogLevel, get_logger
 from src.api.routes import health
+from src.core.config import settings
 
+# 配置日志
+Logger.configure(LoggerConfig(
+    level=LogLevel.INFO,
+    app_name="smart-customer-service",
+    json_format=False
+))
+logger = get_logger()
 
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    """Application lifespan event handler"""
-    # Startup
-    print("🚀 Smart Customer Service API is starting...")
-    print(f"📝 Debug mode: {settings.debug}")
-    print(f"🔗 Frontend URL: {settings.frontend_url}")
-    
-    yield
-    
-    # Shutdown
-    print("👋 Smart Customer Service API is shutting down...")
-
-
-# 创建 FastAPI 应用
-app = FastAPI(
+# 创建 APIServer 实例
+server = APIServer(APIConfig(
     title="Smart Customer Service API",
-    description="智能客服系统后端 API",
     version="1.0.0",
+    description="智能客服系统后端 API",
+    host="0.0.0.0",
+    port=settings.backend_port,
     debug=settings.debug,
-    lifespan=lifespan
-)
+    cors_origins=[settings.frontend_url, "http://localhost:5173"],
+))
 
-# 配置 CORS
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=[settings.frontend_url, "http://localhost:5173"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+# 启动事件处理器
+def init_app():
+    """应用启动初始化"""
+    logger.info("🚀 Smart Customer Service API is starting...")
+    logger.info("Debug mode", debug=settings.debug)
+    logger.info("Frontend URL", frontend_url=settings.frontend_url)
+
+def shutdown_app():
+    """应用关闭清理"""
+    logger.info("👋 Smart Customer Service API is shutting down...")
+
+server.on_startup(init_app)
+server.on_shutdown(shutdown_app)
 
 # 注册路由
-app.include_router(health.router)
+server.include_router(health.router)
 
-
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(
-        "src.main:app",
-        host="0.0.0.0",
-        port=settings.backend_port,
-        reload=settings.debug
-    )
+# 导出 app 供 uvicorn 使用
+app = server.app

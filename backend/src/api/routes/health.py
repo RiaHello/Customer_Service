@@ -1,40 +1,28 @@
 """Health Check Route"""
 from datetime import datetime
-from fastapi import APIRouter
-from pydantic import BaseModel
 
+from fastapi.responses import JSONResponse
+
+from pycore.api import APIRouter
 
 router = APIRouter(tags=["health"])
 
 
-class HealthResponse(BaseModel):
-    """Health check response model"""
-    status: str
-    timestamp: str
-    version: str
-
-
-class APIResponse(BaseModel):
-    """Standard API response"""
-    code: int
-    message: str
-    data: HealthResponse
-
-
-@router.get("/health", response_model=APIResponse)
+@router.get("/health")
 async def health_check():
     """
-    Health check endpoint
-    
+    健康检查接口
+
     Returns:
-        APIResponse: Health status with timestamp and version
+        统一响应格式，包含健康状态、时间戳和版本信息
     """
-    return {
+    response_data = {
         "code": 200,
         "message": "success",
         "data": {
             "status": "healthy",
             "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-            "version": "1.0.0"
-        }
+            "version": "1.0.0",
+        },
     }
+    return JSONResponse(content=response_data, status_code=200)
