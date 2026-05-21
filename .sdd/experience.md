@@ -1312,3 +1312,76 @@
 - 补充经验：SDK 对象的属性访问可能返回 `None`，即使 `hasattr()` 返回 `True`；优先使用字典访问方式 `dict(item).get(...)` 提取嵌套数据
 
 ---
+
+### T-009: B00-3 WebSocket 连接池管理
+
+**任务概述**：实现 WebSocket 连接池管理系统，包括 WebSocketPool 类（连接注册/注销、按 ticket_id 广播消息、心跳 ping/pong）、WebSocket 路由 `WS /ws/tickets/{ticket_id}`（Query 参数 token 认证）、消息格式符合 api-contracts.md、心跳机制（30秒间隔）。
+
+**技术要点**：
+
+- **WebSocketPool 单例模式**：使用全局单例 `get_websocket_pool()` 管理所有 WebSocket 连接，避免多实例导致的连接丢失
+- **连接池数据结构**：使用 `defaultdict[int, list[WebSocket]]` 存储 ticket_id → 连接列表映射，使用 `dict[WebSocket, int]` 反向映射快速查找 ticket_id
+- **心跳任务管理**：为每个连接创建独立的 `asyncio.Task`，在注销时取消任务避免内存泄漏
+- **广播消息并发发送**：使用 `asyncio.gather()` 并发发送消息到同一 ticket_id 的所有连接，提升性能
+- **连接异常自动清理**：发送消息失败时自动注销连接，防止僵尸连接占用资源
+- **WebSocket 路由认证**：使用 Query 参数 `token` 而非 Header（WebSocket 握手时客户端难以自定义 Header），调用 `verify_token()` 验证后再接受连接
+- **消息格式符合契约**：connected/ping/pong/new_message/status_change 五种消息格式严格按照 api-contracts.md 定义
+
+**陷阱与避坑**：
+
+1. **WebSocket 测试的局限性**：
+   - ❌ 错误：使用 `TestClient(app)` 测试 WebSocket 连接，但 TestClient 不支持 WebSocket 协议
+   - ✓ 正确：单元测试只测试连接池逻辑（register/unregister/broadcast），WebSocket 路由只测试是否正确注册，真实 WebSocket 测试需要使用 `pytest-asyncio` + `WebSocketTestSession` 或真实客户端
+   - 原因：FastAPI 的 TestClient 基于 HTTPX，不支持 WebSocket 协议
+
+2. **心跳任务的生命周期管理**：
+   - ❌ 错误：创建心跳任务后未保存任务引用，注销时无法取消任务导致任务泄漏
+   - ✓ 正确：使用 `_heartbeat_tasks: dict[WebSocket, asyncio.Task]` 保存任务引用，注销时调用 `task.cancel()`
+   - 原因：asyncio 任务不会自动取消，必须显式取消以避免内存泄漏
+
+3. **连接注销的完整性**：
+   - ❌ 错误：只从 `_connections` 中移除连接，忘记清理 `_ws_to_ticket` 和 `_heartbeat_tasks`
+   - ✓ 正确：注销时同步清理三个数据结构（连接列表、反向映射、心跳任务），保持数据一致性
+   - 原因：数据结构不同步会导致内存泄漏和僵尸连接
+
+4. **广播消息的异常处理**：
+   - ❌ 错误：广播时某个连接发送失败会中断整个广播，导致其他连接收不到消息
+   - ✓ 正确：使用 `asyncio.gather(*tasks, return_exceptions=True)` 允许部分失败，每个连接的发送错误独立处理
+   - 原因：某个客户端断线不应影响其他客户端接收消息
+
+5. **心跳间隔的配置**：
+   - ❌ 错误：硬编码心跳间隔为 30 秒，测试时心跳任务需要等待 30 秒才能验证
+   - ✓ 正确：`start_heartbeat()` 接受 `interval` 参数，默认 30 秒，测试时使用 1 秒间隔
+   - 原因：单元测试需要快速执行，长心跳间隔会拖慢测试速度
+
+6. **WebSocket 路由的 Token 验证失败处理**：
+   - ❌ 错误：Token 验证失败时直接抛出异常，导致连接未关闭
+   - ✓ 正确：Token 验证失败时调用 `await websocket.close(code=1008, reason="Invalid token")` 明确关闭连接
+   - 原因：WebSocket 握手失败应该发送明确的关闭码，而不是让连接悬挂
+
+7. **消息格式的时间戳字段**：
+   - ❌ 错误：使用 `datetime.now().isoformat()` 格式化时间戳（如 `2026-05-20T15:11:00.123456+08:00`）
+   - ✓ 正确：使用 `datetime.now(UTC).strftime("%Y-%m-%d %H:%M:%S")` 格式化为 `2026-05-20 15:11:00` 格式（符合 api-contracts.md）
+   - 原因：前端已有固定的时间戳解析逻辑，必须与契约格式一致
+
+**验收通过标准**：
+
+- ✓ Lint passes（`ruff check` 无错误）
+- ✓ Typecheck passes（`mypy` 无错误）
+- ✓ 单元测试通过（18 个测试用例，覆盖注册、注销、广播、心跳、消息格式验证场景）
+- ✓ WebSocket 路由正确注册到 FastAPI 应用
+- ✓ 消息格式符合 api-contracts.md 定义（connected/ping/pong/new_message/status_change 五种消息）
+
+**后续任务建议**：
+
+- 下一步实现 T-010 用户登录功能闭环（B01），使用 JWT Token 认证
+- WebSocket 连接池将在后续工单消息发送（B09）和工单状态变更（B05/B07/B08）时被调用
+- 需要在工单接口中集成 `pool.broadcast()` 推送消息和状态变更
+- 考虑在生产环境中添加连接数监控（如 Prometheus metrics）
+
+**系统级经验标注**：
+
+- 无新的跨项目通用问题需要回传系统级经验
+
+---
+

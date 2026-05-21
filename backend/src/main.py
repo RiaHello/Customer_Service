@@ -2,7 +2,7 @@
 from pycore.api import APIConfig, APIServer
 from pycore.core import Logger, LoggerConfig, LogLevel, get_logger
 from src.api.middleware.auth_middleware import AuthMiddleware
-from src.api.routes import auth, health, test
+from src.api.routes import auth, health, test, websocket
 from src.core.config import settings
 
 # 配置日志
@@ -46,6 +46,7 @@ logger.info("✓ JWT Authentication middleware registered")
 server.include_router(health.router)
 server.include_router(test.router)
 server.include_router(auth.router)
+server.include_router(websocket.router)
 
 # 导出 app 供 uvicorn 使用
 app = server.app
