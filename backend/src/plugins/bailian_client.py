@@ -19,9 +19,9 @@ from typing import Any
 
 import httpx
 import yaml
-
 from pycore.core import get_logger
 from pycore.plugins import BasePlugin, PluginResult
+
 from src.core.config import settings
 
 logger = get_logger()

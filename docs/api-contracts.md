@@ -93,10 +93,10 @@ Authorization: Bearer <access_token>
   "code": 200,
   "message": "success",
   "data": {
-    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
     "token_type": "Bearer",
     "user": {
-      "id": 1,
+      "user_id": 1,
       "username": "zhangsan",
       "display_name": "张三",
       "role": "employee",

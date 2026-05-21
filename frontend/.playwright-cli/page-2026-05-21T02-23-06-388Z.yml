@@ -1,0 +1,41 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - banner [ref=e77]:
+      - generic [ref=e79]:
+        - generic [ref=e80]: 🤖
+        - generic [ref=e81]: 智能客服系统
+      - navigation [ref=e82]:
+        - link "员工端" [ref=e83] [cursor=pointer]:
+          - /url: /employee
+        - link "坐席端" [ref=e84] [cursor=pointer]:
+          - /url: /agent
+        - link "知识库管理" [ref=e85] [cursor=pointer]:
+          - /url: /knowledge
+      - generic [ref=e87]:
+        - generic [ref=e88]: 测试员工
+        - button "退出" [ref=e89] [cursor=pointer]
+    - main [ref=e17]:
+      - generic [ref=e90]:
+        - generic [ref=e91]:
+          - heading "工单列表" [level=2] [ref=e93]
+          - generic [ref=e94]:
+            - button "全部" [ref=e95] [cursor=pointer]
+            - button "进行中" [ref=e96] [cursor=pointer]
+            - button "已完结" [ref=e97] [cursor=pointer]
+          - generic [ref=e99]: 暂无工单
+        - generic [ref=e100]:
+          - generic [ref=e101]:
+            - img [ref=e103]
+            - generic [ref=e105]: AI助手
+          - generic [ref=e106]:
+            - generic [ref=e108]:
+              - img [ref=e110]
+              - paragraph [ref=e112]: 输入您的问题开始咨询
+            - generic [ref=e114]:
+              - textbox "输入您的问题..." [ref=e115]
+              - button "发送" [disabled] [ref=e117]
+  - generic [ref=e46]:
+    - generic "Toggle devtools panel" [ref=e47] [cursor=pointer]:
+      - img [ref=e48]
+    - generic "Toggle Component Inspector" [ref=e53] [cursor=pointer]:
+      - img [ref=e54]

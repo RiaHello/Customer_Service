@@ -1,6 +1,7 @@
 """FastAPI Application Entry Point using PyCore"""
 from pycore.api import APIConfig, APIServer
 from pycore.core import Logger, LoggerConfig, LogLevel, get_logger
+
 from src.api.middleware.auth_middleware import AuthMiddleware
 from src.api.routes import auth, health, test, websocket
 from src.core.config import settings

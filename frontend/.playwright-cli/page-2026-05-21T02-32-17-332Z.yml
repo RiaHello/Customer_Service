@@ -1,0 +1,95 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - banner [ref=e37]:
+      - generic [ref=e39]:
+        - generic [ref=e40]: 🤖
+        - generic [ref=e41]: 智能客服系统
+      - navigation [ref=e42]:
+        - link "员工端" [ref=e43] [cursor=pointer]:
+          - /url: /employee
+        - link "坐席端" [ref=e44] [cursor=pointer]:
+          - /url: /agent
+        - link "知识库管理" [ref=e45] [cursor=pointer]:
+          - /url: /knowledge
+      - generic [ref=e47]:
+        - generic [ref=e48]: 张三
+        - button "退出" [ref=e49] [cursor=pointer]
+    - main [ref=e4]:
+      - generic [ref=e50]:
+        - generic [ref=e51]:
+          - heading "工单列表" [level=2] [ref=e53]
+          - generic [ref=e54]:
+            - button "全部" [ref=e55] [cursor=pointer]
+            - button "进行中" [ref=e56] [cursor=pointer]
+            - button "已完结" [ref=e57] [cursor=pointer]
+          - generic [ref=e58]:
+            - generic [ref=e59] [cursor=pointer]:
+              - generic [ref=e60]: 您好！我是智能客服助手，请问如何修改我的...
+              - generic [ref=e61]: 您好！我是智能客服助手，请问如何修改我的个人资料？
+              - generic [ref=e62]:
+                - generic [ref=e63]: 昨天
+                - generic [ref=e64]: 进行中
+            - generic [ref=e65] [cursor=pointer]:
+              - generic [ref=e66]: 客户反馈无法查看历史订单详情，需要协助解...
+              - generic [ref=e67]: 客户反馈无法查看历史订单详情，需要协助解决...
+              - generic [ref=e68]:
+                - generic [ref=e69]: 昨天
+                - generic [ref=e70]: 进行中
+            - generic [ref=e71] [cursor=pointer]:
+              - generic [ref=e72]: 用户询问退款流程和预计到账时间...
+              - generic [ref=e73]: 用户询问退款流程和预计到账时间...
+              - generic [ref=e74]:
+                - generic [ref=e75]: 昨天
+                - generic [ref=e76]: 进行中
+            - generic [ref=e77] [cursor=pointer]:
+              - generic [ref=e78]: 多次输入错误密码导致账户被锁定，请求解锁...
+              - generic [ref=e79]: 多次输入错误密码导致账户被锁定，请求解锁...
+              - generic [ref=e80]:
+                - generic [ref=e81]: 昨天
+                - generic [ref=e82]: 已完结
+            - generic [ref=e83] [cursor=pointer]:
+              - generic [ref=e84]: 客户建议增加批量导出功能，已记录并反馈....
+              - generic [ref=e85]: 客户建议增加批量导出功能，已记录并反馈...
+              - generic [ref=e86]:
+                - generic [ref=e87]: 昨天
+                - generic [ref=e88]: 已完结
+            - generic [ref=e89] [cursor=pointer]:
+              - generic [ref=e90]: 企业用户申请开具增值税专用发票...
+              - generic [ref=e91]: 企业用户申请开具增值税专用发票...
+              - generic [ref=e92]:
+                - generic [ref=e93]: 05/19
+                - generic [ref=e94]: 已完结
+            - generic [ref=e95] [cursor=pointer]:
+              - generic [ref=e96]: 我的电脑无法开机，按电源键没有任何反应....
+              - generic [ref=e97]: 我的电脑无法开机，按电源键没有任何反应...
+              - generic [ref=e98]:
+                - generic [ref=e99]: 昨天
+                - generic [ref=e100]: 进行中
+            - generic [ref=e101] [cursor=pointer]:
+              - generic [ref=e102]: Outlook收不到邮件，请帮忙排查.....
+              - generic [ref=e103]: Outlook收不到邮件，请帮忙排查...
+              - generic [ref=e104]:
+                - generic [ref=e105]: 昨天
+                - generic [ref=e106]: 进行中
+            - generic [ref=e107] [cursor=pointer]:
+              - generic [ref=e108]: 打印机无法连接到网络，显示离线状态...
+              - generic [ref=e109]: 打印机无法连接到网络，显示离线状态...
+              - generic [ref=e110]:
+                - generic [ref=e111]: 昨天
+                - generic [ref=e112]: 进行中
+        - generic [ref=e113]:
+          - generic [ref=e114]:
+            - img [ref=e116]
+            - generic [ref=e118]: AI助手
+          - generic [ref=e119]:
+            - generic [ref=e121]:
+              - img [ref=e123]
+              - paragraph [ref=e125]: 输入您的问题开始咨询
+            - generic [ref=e127]:
+              - textbox "输入您的问题..." [ref=e128]
+              - button "发送" [disabled] [ref=e130]
+  - generic [ref=e23]:
+    - generic "Toggle devtools panel" [ref=e24] [cursor=pointer]:
+      - img [ref=e25]
+    - generic "Toggle Component Inspector" [ref=e30] [cursor=pointer]:
+      - img [ref=e31]

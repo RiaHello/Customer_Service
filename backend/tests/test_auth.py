@@ -9,6 +9,7 @@ from datetime import timedelta
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
+
 from src.api.middleware.auth_middleware import AuthMiddleware
 from src.core.auth import create_access_token, verify_token
 
@@ -74,6 +75,7 @@ class TestJWTToken:
     def test_verify_token_missing_claims(self):
         """测试：验证缺少必要字段的 Token"""
         from jose import jwt
+
         from src.core.config import settings
 
         # 手动创建一个缺少 username 字段的 Token

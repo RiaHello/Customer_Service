@@ -1,0 +1,99 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - banner [ref=e41]:
+      - generic [ref=e43]:
+        - generic [ref=e44]: 🤖
+        - generic [ref=e45]: 智能客服系统
+      - navigation [ref=e46]:
+        - link "员工端" [ref=e47] [cursor=pointer]:
+          - /url: /employee
+        - link "坐席端" [ref=e48] [cursor=pointer]:
+          - /url: /agent
+        - link "知识库管理" [ref=e49] [cursor=pointer]:
+          - /url: /knowledge
+      - generic [ref=e51]:
+        - generic [ref=e52]: 李四
+        - button "退出" [ref=e53] [cursor=pointer]
+    - main [ref=e4]:
+      - generic [ref=e135]:
+        - generic [ref=e136]:
+          - heading "工单列表" [level=2] [ref=e138]
+          - generic [ref=e139]:
+            - button "待处理" [ref=e140] [cursor=pointer]
+            - button "处理中" [ref=e141] [cursor=pointer]
+            - button "已完成" [ref=e142] [cursor=pointer]
+          - generic [ref=e143]:
+            - generic [ref=e197] [cursor=pointer]:
+              - generic [ref=e199]: "#2001 赵六"
+              - paragraph [ref=e201]: 我的电脑无法开机，按电源键没有任何反应....
+              - generic [ref=e203]: 等待 2 分钟
+            - generic [ref=e204] [cursor=pointer]:
+              - generic [ref=e206]: "#2002 孙七"
+              - paragraph [ref=e208]: Outlook收不到邮件，请帮忙排查.....
+              - generic [ref=e210]: 等待 4 分钟
+            - generic [ref=e211] [cursor=pointer]:
+              - generic [ref=e213]: "#2003 周八"
+              - paragraph [ref=e215]: 打印机无法连接到网络，显示离线状态......
+              - generic [ref=e217]: 等待 12 分钟
+        - generic [ref=e165]:
+          - generic [ref=e219]:
+            - generic [ref=e221]: 👤
+            - generic [ref=e222]:
+              - heading "赵六" [level=3] [ref=e223]
+              - generic [ref=e224]:
+                - generic [ref=e225]: "#2001"
+                - generic [ref=e226]: 处理中
+          - generic [ref=e227]:
+            - generic [ref=e228]:
+              - generic [ref=e230]:
+                - paragraph [ref=e231]: 你好，我的电脑突然开不了机了，按电源键完全没有反应，请帮我看看是怎么回事？
+                - generic [ref=e232]: 11:00
+              - generic [ref=e234]: 👤
+            - generic [ref=e235]:
+              - generic [ref=e237]: 🤖
+              - generic [ref=e239]:
+                - paragraph [ref=e240]: 您好！我是智能客服助手。电脑无法开机可能有几种原因：电源问题、硬件故障或系统故障。我正在为您查询相关解决方案，请稍候...
+                - generic [ref=e241]: 11:00
+            - generic [ref=e242]:
+              - generic [ref=e244]:
+                - paragraph [ref=e245]: 我需要转人工客服，这个问题比较紧急
+                - generic [ref=e246]: 11:00
+              - generic [ref=e248]: 👤
+          - generic [ref=e249]:
+            - generic [ref=e250]:
+              - textbox "输入回复内容..." [ref=e251]
+              - button "发送" [disabled] [ref=e252]
+            - generic [ref=e253]:
+              - button "结束工单" [ref=e254] [cursor=pointer]
+              - button "已解决" [ref=e255] [cursor=pointer]
+              - button "智能回答" [ref=e256] [cursor=pointer]
+        - generic [ref=e169]:
+          - generic [ref=e170]:
+            - generic [ref=e171]: ✨
+            - heading "AI 辅助" [level=2] [ref=e172]
+          - generic [ref=e257]:
+            - heading "意图识别" [level=3] [ref=e258]
+            - generic [ref=e259]:
+              - generic [ref=e260]:
+                - generic [ref=e261]: 一级意图：
+                - generic [ref=e262]: IT问题
+              - generic [ref=e263]:
+                - generic [ref=e264]: 二级意图：
+                - generic [ref=e265]: 硬件故障
+          - generic [ref=e266]:
+            - heading "用户画像" [level=3] [ref=e267]
+            - generic [ref=e268]:
+              - generic [ref=e269]: 常问领域：
+              - generic [ref=e270]:
+                - generic [ref=e271]: IT问题 (5)
+                - generic [ref=e272]: 硬件问题 (3)
+          - generic [ref=e273]:
+            - heading "关联知识" [level=3] [ref=e274]
+            - generic [ref=e276]:
+              - generic [ref=e277]: 📄
+              - generic [ref=e278]: 硬件故障排查指南.md
+  - generic [ref=e29]:
+    - generic "Toggle devtools panel" [ref=e30] [cursor=pointer]:
+      - img [ref=e31]
+    - generic "Toggle Component Inspector" [ref=e36] [cursor=pointer]:
+      - img [ref=e37]

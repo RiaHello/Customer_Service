@@ -1,0 +1,52 @@
+- generic [ref=e1]:
+  - generic [ref=e3]:
+    - banner [ref=e41]:
+      - generic [ref=e43]:
+        - generic [ref=e44]: 🤖
+        - generic [ref=e45]: 智能客服系统
+      - navigation [ref=e46]:
+        - link "员工端" [ref=e47] [cursor=pointer]:
+          - /url: /employee
+        - link "坐席端" [ref=e48] [cursor=pointer]:
+          - /url: /agent
+        - link "知识库管理" [ref=e49] [cursor=pointer]:
+          - /url: /knowledge
+      - generic [ref=e51]:
+        - generic [ref=e52]: 李四
+        - button "退出" [ref=e53] [cursor=pointer]
+    - main [ref=e4]:
+      - generic [ref=e135]:
+        - generic [ref=e136]:
+          - heading "工单列表" [level=2] [ref=e138]
+          - generic [ref=e139]:
+            - button "待处理" [ref=e140] [cursor=pointer]
+            - button "处理中" [ref=e141] [cursor=pointer]
+            - button "已完成" [active] [ref=e142] [cursor=pointer]
+          - generic [ref=e143]:
+            - generic [ref=e176] [cursor=pointer]:
+              - generic [ref=e178]: "#1003 张三"
+              - paragraph [ref=e180]: 多次输入错误密码导致账户被锁定，请求解锁...
+              - generic [ref=e182]: 等待 14 小时
+            - generic [ref=e183] [cursor=pointer]:
+              - generic [ref=e185]: "#1004 李四"
+              - paragraph [ref=e187]: 客户建议增加批量导出功能，已记录并反馈....
+              - generic [ref=e189]: 等待 14 小时
+            - generic [ref=e190] [cursor=pointer]:
+              - generic [ref=e192]: "#1005 王五"
+              - paragraph [ref=e194]: 企业用户申请开具增值税专用发票......
+              - generic [ref=e196]: 等待 31 小时
+        - generic [ref=e166]:
+          - generic [ref=e167]: 📥
+          - paragraph [ref=e168]: AI 正在处理中...
+        - generic [ref=e169]:
+          - generic [ref=e170]:
+            - generic [ref=e171]: ✨
+            - heading "AI 辅助" [level=2] [ref=e172]
+          - generic [ref=e173]:
+            - generic [ref=e174]: ✨
+            - paragraph [ref=e175]: 请从左侧选择工单
+  - generic [ref=e29]:
+    - generic "Toggle devtools panel" [ref=e30] [cursor=pointer]:
+      - img [ref=e31]
+    - generic "Toggle Component Inspector" [ref=e36] [cursor=pointer]:
+      - img [ref=e37]

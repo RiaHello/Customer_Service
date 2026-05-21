@@ -21,24 +21,30 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   const login = async (username: string, password: string, rememberMe: boolean) => {
-    const response = await authService.login({ username, password })
+    try {
+      const response = await authService.login({ username, password })
 
-    if (response.code === 200 && response.data) {
-      token.value = response.data.access_token
-      user.value = response.data.user
+      if (response.code === 200 && response.data) {
+        token.value = response.data.token
+        user.value = response.data.user
 
-      localStorage.setItem('token', response.data.access_token)
-      localStorage.setItem('user', JSON.stringify(response.data.user))
+        localStorage.setItem('token', response.data.token)
+        localStorage.setItem('user', JSON.stringify(response.data.user))
 
-      if (rememberMe) {
-        localStorage.setItem('remember_username', username)
+        if (rememberMe) {
+          localStorage.setItem('remember_username', username)
+        } else {
+          localStorage.removeItem('remember_username')
+        }
+
+        return { success: true, message: response.message }
       } else {
-        localStorage.removeItem('remember_username')
+        return { success: false, message: response.message }
       }
-
-      return { success: true, message: response.message }
-    } else {
-      return { success: false, message: response.message }
+    } catch (error: any) {
+      // 优先使用后端返回的错误消息
+      const message = error.response?.data?.message || '登录失败，请重试'
+      return { success: false, message }
     }
   }
 

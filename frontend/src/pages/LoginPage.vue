@@ -47,13 +47,6 @@
           {{ isLoading ? '登录中...' : '登录' }}
         </button>
       </form>
-
-      <div class="mock-hint">
-        <p><strong>[Mock 测试账号]</strong></p>
-        <p>员工账号: employee1 / 123456</p>
-        <p>坐席账号: agent1 / 123456</p>
-        <p>管理员: admin / 123456</p>
-      </div>
     </div>
   </div>
 </template>
@@ -99,8 +92,9 @@ const handleLogin = async () => {
     } else {
       errorMessage.value = result.message
     }
-  } catch {
-    errorMessage.value = '登录失败，请重试'
+  } catch (error: any) {
+    // 双重保险：优先使用后端错误消息
+    errorMessage.value = error.response?.data?.message || '登录失败，请重试'
   } finally {
     isLoading.value = false
   }
@@ -248,24 +242,6 @@ const handleForgotPassword = () => {
 .login-button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
-}
-
-.mock-hint {
-  margin-top: 32px;
-  padding: 16px;
-  background: #fafaf9;
-  border-radius: 8px;
-  font-size: 13px;
-  color: #52525b;
-  line-height: 1.6;
-}
-
-.mock-hint p {
-  margin: 4px 0;
-}
-
-.mock-hint strong {
-  color: #18181b;
 }
 
 @media (max-width: 640px) {

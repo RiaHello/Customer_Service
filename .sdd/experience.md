@@ -257,6 +257,70 @@
 
 ---
 
+### T-010: 用户登录功能闭环（B01）
+
+**任务概述**：实现用户登录接口 POST /api/auth/login，验证用户名密码（bcrypt），生成 JWT Token，返回用户信息和 Token。
+
+**技术要点**：
+- **Pydantic 模型设计**：分离 LoginRequest（入参）、UserInfo（用户信息）、LoginResponse（出参）三层模型，符合分层规范
+- **bcrypt 密码验证**：使用 bcrypt 库的 `checkpw()` 方法验证密码，不使用 passlib（符合后端开发规范）
+- **JWT Token 生成**：调用 `create_access_token()` 生成 Token，包含 user_id、username、role 三个字段
+- **用户昵称降级显示**：优先显示 nickname，不存在时降级显示 username
+- **统一响应格式**：使用 `success_response()` 和 `error_response()` 返回符合 API 契约的响应格式
+- **数据库查询**：使用 SQLAlchemy 异步引擎直接执行 SQL 查询，避免创建重复的 session
+- **测试覆盖**：11 个测试用例，覆盖成功登录（3种角色）、用户不存在、密码错误、参数验证、昵称降级、Token 验证场景
+
+**陷阱与避坑**：
+1. **响应函数签名错误**：
+   - ❌ 错误：`resp, _ = error_response(error="...", error_code="...", status_code=...)`
+   - ✓ 正确：`return error_response(message="...", code=...)`（直接返回 dict，不解包）
+   - 原因：`error_response()` 返回 dict，不是元组；参数名是 `message` 和 `code`，不是 `error` 和 `error_code`
+
+2. **测试客户端选择**：
+   - ❌ 错误：使用 `httpx.AsyncClient(app=app)` 测试 FastAPI 应用
+   - ✓ 正确：使用 `fastapi.testclient.TestClient(app)` 测试同步路由
+   - 原因：httpx.AsyncClient 不接受 `app` 参数；FastAPI TestClient 基于 Starlette，原生支持 FastAPI 应用测试
+
+3. **用户昵称字段对齐**：
+   - ❌ 错误：前端 Mock 数据使用 `display_name` 字段，但数据库模型是 `nickname`
+   - ✓ 正确：数据库使用 `nickname` 字段（符合 PRD 定义），后端响应中构造 `display_name`（符合 API 契约）
+   - 原因：PRD 7.1.1 明确要求 users 表使用 `nickname` 字段，API 契约要求返回 `display_name`，需要在响应构造时映射
+
+4. **数据库连接管理**：
+   - ❌ 错误：在路由中创建多个 session，导致连接泄漏
+   - ✓ 正确：使用 `create_async_engine()` 创建一次性连接，使用完后 `await engine.dispose()` 关闭
+   - 原因：登录接口不需要持久化 session，临时查询后立即关闭连接避免泄漏
+
+5. **时间戳格式化**：
+   - ❌ 错误：直接返回 SQLite 的 datetime 对象或字符串，格式不一致
+   - ✓ 正确：判断类型后统一格式化为 `"%Y-%m-%d %H:%M:%S"` 字符串
+   - 原因：SQLite 返回的 created_at 可能是 datetime 对象或字符串，需要统一格式化
+
+6. **Lint 自动修复**：
+   - ❌ 错误：手动逐个修复 lint 错误（移除未使用导入、排序导入、移除空白行尾随空格）
+   - ✓ 正确：使用 `ruff check --fix .` 自动修复所有可修复错误
+   - 原因：大部分 lint 错误都可以自动修复，手动修复浪费时间且容易遗漏
+
+**验收通过标准**：
+- ✓ Lint passes（`ruff check` 无错误）
+- ✓ Typecheck passes（`mypy` 无错误）
+- ✓ 单元测试通过（11 个测试用例，覆盖所有场景）
+- ✓ 使用正确用户名密码可登录并返回 Token
+- ✓ 使用错误用户名或密码无法登录
+- ✓ 返回的用户信息包含 user_id/username/role/display_name/created_at
+- ✓ 响应格式符合 api-contracts.md
+
+**后续任务建议**：
+- 下一步需要前端切换到真实 API（`VITE_USE_MOCK=false`），修改 `frontend/src/services/auth.ts` 调用真实后端
+- 需要在前端登录成功后将 Token 持久化到 localStorage，并在 Axios 拦截器中注入 `Authorization: Bearer <token>` 头
+- 需要移除登录页的 Mock 专用提示文案（如"测试账号：employee1 / password123"）
+- 后端登录接口已完成，可以进入前端真实联调阶段
+
+**系统级经验标注**：
+- 无新的跨项目通用问题需要回传系统级经验
+
+---
+
 （后续任务经验将在开发过程中追加）
 
 ---
@@ -1382,6 +1446,85 @@
 **系统级经验标注**：
 
 - 无新的跨项目通用问题需要回传系统级经验
+
+---
+
+### T-010 修复: 前端字段同步与全局拦截器优化
+
+**任务概述**：修复 T-010 测试报告指出的前端字段同步问题：前端仍读取旧字段 `access_token`（已改为 `token`）和 `user.id`（已改为 `user.user_id`），以及全局 401 拦截器打断登录页错误提示的问题。
+
+**修复内容**：
+
+1. **前端类型定义与 API 契约对齐**：
+   - 修改 `frontend/src/types/auth.ts` 中的类型定义
+   - `LoginResponse.access_token` 改为 `LoginResponse.token`
+   - `User.id` 改为 `User.user_id`
+
+2. **Store 读取字段修复**：
+   - 修改 `frontend/src/stores/auth.ts` 中的登录逻辑
+   - 从 `response.data.access_token` 改为 `response.data.token`
+   - localStorage 存储时也使用 `token` 字段
+
+3. **全局 401 拦截器优化**：
+   - 修改 `frontend/src/services/api.ts` 中的响应拦截器
+   - 添加路径判断：只有不在 `/login` 页面时才重定向
+   - 避免登录页的错误提示被拦截器打断
+
+4. **API 契约文档更新**：
+   - 修改 `docs/api-contracts.md` 中登录接口的示例
+   - `access_token` 改为 `token`
+   - `user.id` 改为 `user.user_id`
+
+5. **Mock 数据同步修复**：
+   - 修改 `frontend/src/mocks/auth.ts` 中的 Mock 数据
+   - `mockAccounts` 中的 `id` 改为 `user_id`
+   - `access_token` 改为 `token`
+
+**技术要点**：
+
+- **前后端契约一致性原则**：前端类型定义、Store、Mock 数据必须与后端 API 响应格式完全一致
+- **全局拦截器的细粒度控制**：401 拦截器需要判断当前路径，避免在登录页重复重定向
+- **修改顺序**：类型定义 → Store 逻辑 → Mock 数据 → API 文档，确保所有环节一致
+
+**陷阱与避坑**：
+
+1. **后端字段已修改但前端未同步**：
+   - ❌ 错误：后端将 `access_token` 改为 `token`，但前端仍读取 `access_token`，导致 Token 变成 `undefined`
+   - ✓ 正确：后端字段修改后，必须同步修改前端类型定义、Store、Mock 数据、API 文档
+   - 原因：前后端契约不一致会导致数据读取失败，登录后无法正常使用
+
+2. **全局拦截器打断页面级错误处理**：
+   - ❌ 错误：全局 401 拦截器直接重定向到 `/login`，导致登录页的错误提示无法显示
+   - ✓ 正确：在拦截器中添加路径判断，如果已经在登录页则不再重定向
+   - 原因：登录页的 401 错误应该由页面级错误处理显示提示，而不是被拦截器打断
+
+3. **Mock 数据字段遗漏**：
+   - ❌ 错误：修改了类型定义但忘记修改 Mock 数据，导致类型检查失败
+   - ✓ 正确：修改类型定义后，必须同步修改 Mock 数据中的所有字段名
+   - 原因：TypeScript 类型检查会验证 Mock 数据与类型定义的一致性
+
+4. **字段修改的完整性检查**：
+   - ❌ 错误：只修改了类型定义，忘记修改 Store 中的实际读取逻辑
+   - ✓ 正确：使用 Grep 搜索旧字段名，确保所有引用都已修改
+   - 原因：字段名修改必须覆盖类型定义、实际使用、Mock 数据、文档示例所有环节
+
+**验收通过标准**：
+
+- ✓ Typecheck passes（`npm run type-check` 无错误）
+- ✓ Lint passes（`npm run lint` 无错误）
+- ✓ 登录后 Token 正确存储到 localStorage（不是 `undefined`）
+- ✓ 错误密码时页面显示错误提示（不被拦截器打断）
+- ✓ 前端类型定义与后端 API 响应格式完全一致
+
+**后续任务建议**：
+
+- 后端 API 字段修改后，必须同步修改前端类型定义、Store、Mock 数据、API 文档
+- 全局拦截器需要考虑细粒度控制，避免影响特定页面的错误处理
+- 字段修改后使用 Grep 搜索旧字段名，确保没有遗漏的引用
+
+**系统级经验标注**：
+
+- [SYSTEM] 建议回传系统级经验：后端 API 字段修改后前端未同步，导致前后端契约不一致。How to apply: 后端 API 字段修改时，必须同步修改 `docs/api-contracts.md`，并通知前端同步修改类型定义、Store、Mock 数据；使用 Grep 搜索旧字段名确保完整性；全局拦截器需添加路径判断避免打断特定页面的错误处理。
 
 ---
 

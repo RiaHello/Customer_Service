@@ -15,6 +15,7 @@ from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 import yaml
+
 from src.plugins.bailian_client import BailianClient
 
 

@@ -1,0 +1,106 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - banner [ref=e41]:
+      - generic [ref=e43]:
+        - generic [ref=e44]: 🤖
+        - generic [ref=e45]: 智能客服系统
+      - navigation [ref=e46]:
+        - link "员工端" [ref=e47] [cursor=pointer]:
+          - /url: /employee
+        - link "坐席端" [ref=e48] [cursor=pointer]:
+          - /url: /agent
+        - link "知识库管理" [ref=e49] [cursor=pointer]:
+          - /url: /knowledge
+      - generic [ref=e51]:
+        - generic [ref=e52]: 李四
+        - button "退出" [ref=e53] [cursor=pointer]
+    - main [ref=e4]:
+      - generic [ref=e135]:
+        - generic [ref=e136]:
+          - heading "工单列表" [level=2] [ref=e138]
+          - generic [ref=e139]:
+            - button "待处理" [ref=e140] [cursor=pointer]
+            - button "处理中" [ref=e141] [cursor=pointer]
+            - button "已完成" [ref=e142] [cursor=pointer]
+          - generic [ref=e143]:
+            - generic [ref=e285] [cursor=pointer]:
+              - generic [ref=e287]: "#1001 张三"
+              - paragraph [ref=e289]: 客户反馈无法查看历史订单详情，需要协助解...
+              - generic [ref=e291]: 等待 13 小时
+            - generic [ref=e292] [cursor=pointer]:
+              - generic [ref=e294]: "#1002 张三"
+              - paragraph [ref=e296]: 用户询问退款流程和预计到账时间......
+              - generic [ref=e298]: 等待 13 小时
+            - generic [ref=e299] [cursor=pointer]:
+              - generic [ref=e301]: "#2001 赵六"
+              - paragraph [ref=e303]: 我的电脑无法开机，按电源键没有任何反应....
+              - generic [ref=e305]: 等待 12 小时
+        - generic [ref=e165]:
+          - generic [ref=e307]:
+            - generic [ref=e309]: 👤
+            - generic [ref=e310]:
+              - heading "赵六" [level=3] [ref=e311]
+              - generic [ref=e312]:
+                - generic [ref=e313]: "#2001"
+                - generic [ref=e314]: 处理中
+          - generic [ref=e315]:
+            - generic [ref=e316]:
+              - generic [ref=e318]:
+                - paragraph [ref=e319]: 你好，我的电脑突然开不了机了，按电源键完全没有反应，请帮我看看是怎么回事？
+                - generic [ref=e320]: 11:00
+              - generic [ref=e322]: 👤
+            - generic [ref=e323]:
+              - generic [ref=e325]: 🤖
+              - generic [ref=e327]:
+                - paragraph [ref=e328]: 您好！我是智能客服助手。电脑无法开机可能有几种原因：电源问题、硬件故障或系统故障。我正在为您查询相关解决方案，请稍候...
+                - generic [ref=e329]: 11:00
+            - generic [ref=e330]:
+              - generic [ref=e332]:
+                - paragraph [ref=e333]: 我需要转人工客服，这个问题比较紧急
+                - generic [ref=e334]: 11:00
+              - generic [ref=e336]: 👤
+          - generic [ref=e337]:
+            - generic [ref=e338]:
+              - textbox "输入回复内容..." [ref=e339]
+              - button "发送" [disabled] [ref=e340]
+            - generic [ref=e341]:
+              - button "结束工单" [ref=e342] [cursor=pointer]
+              - button "已解决" [ref=e343] [cursor=pointer]
+              - button "智能回答" [ref=e344] [cursor=pointer]
+        - generic [ref=e169]:
+          - generic [ref=e170]:
+            - generic [ref=e171]: ✨
+            - heading "AI 辅助" [level=2] [ref=e172]
+          - generic [ref=e345]:
+            - heading "意图识别" [level=3] [ref=e346]
+            - generic [ref=e347]:
+              - generic [ref=e348]:
+                - generic [ref=e349]: 一级意图：
+                - generic [ref=e350]: IT问题
+              - generic [ref=e351]:
+                - generic [ref=e352]: 二级意图：
+                - generic [ref=e353]: 硬件故障
+          - generic [ref=e354]:
+            - heading "用户画像" [level=3] [ref=e355]
+            - generic [ref=e356]:
+              - generic [ref=e357]: 常问领域：
+              - generic [ref=e358]:
+                - generic [ref=e359]: IT问题 (5)
+                - generic [ref=e360]: 硬件问题 (3)
+          - generic [ref=e367]:
+            - heading "智能建议回复" [level=3] [ref=e368]
+            - generic [ref=e369]:
+              - paragraph [ref=e370]: 您好！电脑无法开机的问题通常有以下几种可能原因：1. 电源线松动或电源适配器故障；2. 主板或内存硬件故障；3. BIOS 设置异常。建议您先检查：电源指示灯是否亮起？按电源键是否有任何声音或风扇转动？请告诉我这些信息，我会进一步协助您排查。如果需要现场支持，我可以为您安排 IT 技术人员上门检修。
+              - generic [ref=e371]:
+                - button "采用建议" [ref=e372] [cursor=pointer]
+                - button "重新生成" [ref=e373] [cursor=pointer]
+          - generic [ref=e361]:
+            - heading "关联知识" [level=3] [ref=e362]
+            - generic [ref=e364]:
+              - generic [ref=e365]: 📄
+              - generic [ref=e366]: 硬件故障排查指南.md
+  - generic [ref=e29]:
+    - generic "Toggle devtools panel" [ref=e30] [cursor=pointer]:
+      - img [ref=e31]
+    - generic "Toggle Component Inspector" [ref=e36] [cursor=pointer]:
+      - img [ref=e37]

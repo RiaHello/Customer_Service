@@ -1,0 +1,100 @@
+- generic [ref=e1]:
+  - generic [ref=e3]:
+    - banner [ref=e41]:
+      - generic [ref=e43]:
+        - generic [ref=e44]: 🤖
+        - generic [ref=e45]: 智能客服系统
+      - navigation [ref=e46]:
+        - link "员工端" [ref=e47] [cursor=pointer]:
+          - /url: /employee
+        - link "坐席端" [ref=e48] [cursor=pointer]:
+          - /url: /agent
+        - link "知识库管理" [ref=e49] [cursor=pointer]:
+          - /url: /knowledge
+      - generic [ref=e51]:
+        - generic [ref=e52]: 李四
+        - button "退出" [ref=e53] [cursor=pointer]
+    - main [ref=e4]:
+      - generic [ref=e135]:
+        - generic [ref=e136]:
+          - heading "工单列表" [level=2] [ref=e138]
+          - generic [ref=e139]:
+            - button "待处理" [ref=e140] [cursor=pointer]
+            - button "处理中" [ref=e141] [cursor=pointer]
+            - button "已完成" [ref=e142] [cursor=pointer]
+          - generic [ref=e143]:
+            - generic [ref=e211] [cursor=pointer]:
+              - generic [ref=e213]: "#1001 员工"
+              - paragraph [ref=e215]: 客户反馈无法查看历史订单详情，需要协助解...
+              - generic [ref=e217]: 等待 12 小时
+            - generic [ref=e218] [cursor=pointer]:
+              - generic [ref=e220]: "#1002 员工"
+              - paragraph [ref=e222]: 用户询问退款流程和预计到账时间......
+              - generic [ref=e224]: 等待 13 小时
+            - generic [ref=e225] [cursor=pointer]:
+              - generic [ref=e227]: "#2001 员工"
+              - paragraph [ref=e229]: 我的电脑无法开机，按电源键没有任何反应....
+              - generic [ref=e231]: 等待 12 小时
+        - generic [ref=e165]:
+          - generic [ref=e236]:
+            - generic [ref=e238]: 👤
+            - generic [ref=e239]:
+              - heading "员工" [level=3] [ref=e240]
+              - generic [ref=e241]:
+                - generic [ref=e242]: "#1001"
+                - generic [ref=e243]: 处理中
+          - generic [ref=e244]:
+            - generic [ref=e245]:
+              - generic [ref=e247]:
+                - paragraph [ref=e248]: 我的订单列表页面显示空白，无法查看历史订单
+                - generic [ref=e249]: 10:30
+              - generic [ref=e251]: 👤
+            - generic [ref=e252]:
+              - generic [ref=e254]: 🤖
+              - generic [ref=e256]:
+                - paragraph [ref=e257]: 您好！感谢您的反馈。请问您是在哪个页面遇到这个问题的？能否提供一下您的账号或订单号？
+                - generic [ref=e258]: 10:30
+            - generic [ref=e259]:
+              - generic [ref=e261]:
+                - paragraph [ref=e262]: 在"我的订单"页面，账号是 user001
+                - generic [ref=e263]: 10:32
+              - generic [ref=e265]: 👤
+            - generic [ref=e266]:
+              - generic [ref=e268]: 🎧
+              - generic [ref=e270]:
+                - paragraph [ref=e271]: 我是人工客服小李，我来帮您处理。我看到您的账号数据正常，可能是缓存问题，建议您清除浏览器缓存后重试。
+                - generic [ref=e272]: 10:35
+          - generic [ref=e273]:
+            - generic [ref=e274]:
+              - textbox "输入回复内容..." [ref=e275]: 您好！根据您的描述，订单列表页面显示空白可能是由于浏览器缓存或系统临时故障导致的。建议您先尝试清除浏览器缓存并刷新页面，或者使用隐私模式打开网站重试。如果问题仍未解决，请提供您的账号信息，我会进一步协助您排查。
+              - button "发送" [ref=e276] [cursor=pointer]
+            - generic [ref=e277]:
+              - button "结束工单" [ref=e278] [cursor=pointer]
+              - button "智能回答" [ref=e279] [cursor=pointer]
+        - generic [ref=e169]:
+          - generic [ref=e280]:
+            - heading "意图识别" [level=3] [ref=e281]
+            - generic [ref=e282]:
+              - generic [ref=e283]:
+                - generic [ref=e284]: 一级意图：
+                - generic [ref=e285]: IT问题
+              - generic [ref=e286]:
+                - generic [ref=e287]: 二级意图：
+                - generic [ref=e288]: 系统故障
+          - generic [ref=e289]:
+            - heading "用户画像" [level=3] [ref=e290]
+            - generic [ref=e291]:
+              - generic [ref=e292]: 常问领域：
+              - generic [ref=e293]:
+                - generic [ref=e294]: IT问题 (3)
+                - generic [ref=e295]: 系统问题 (2)
+          - generic [ref=e296]:
+            - heading "智能回答建议" [level=3] [ref=e297]
+            - generic [ref=e298]:
+              - paragraph [ref=e299]: 您好！根据您的描述，订单列表页面显示空白可能是由于浏览器缓存或系统临时故障导致的。建议您先尝试清除浏览器缓存并刷新页面，或者使用隐私模式打开网站重试。如果问题仍未解决，请提供您的账号信息，我会进一步协助您排查。
+              - button "一键采用" [active] [ref=e300] [cursor=pointer]
+  - generic [ref=e29]:
+    - generic "Toggle devtools panel" [ref=e30] [cursor=pointer]:
+      - img [ref=e31]
+    - generic "Toggle Component Inspector" [ref=e36] [cursor=pointer]:
+      - img [ref=e37]

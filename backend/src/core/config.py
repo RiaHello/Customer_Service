@@ -8,10 +8,9 @@ Application Configuration using ConfigManager + pydantic-settings.
 """
 from pathlib import Path
 
+from pycore.core import BaseSettings, ConfigManager
 from pydantic_settings import BaseSettings as PydanticBaseSettings
 from pydantic_settings import SettingsConfigDict
-
-from pycore.core import BaseSettings, ConfigManager
 
 
 class AppSettings(BaseSettings):

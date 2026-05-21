@@ -1,0 +1,95 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - banner [ref=e41]:
+      - generic [ref=e43]:
+        - generic [ref=e44]: 🤖
+        - generic [ref=e45]: 智能客服系统
+      - navigation [ref=e46]:
+        - link "员工端" [ref=e47] [cursor=pointer]:
+          - /url: /employee
+        - link "坐席端" [ref=e48] [cursor=pointer]:
+          - /url: /agent
+        - link "知识库管理" [ref=e49] [cursor=pointer]:
+          - /url: /knowledge
+      - generic [ref=e51]:
+        - generic [ref=e52]: 李四
+        - button "退出" [ref=e53] [cursor=pointer]
+    - main [ref=e4]:
+      - generic [ref=e54]:
+        - generic [ref=e55]:
+          - heading "工单列表" [level=2] [ref=e57]
+          - generic [ref=e58]:
+            - button "全部" [ref=e59] [cursor=pointer]
+            - button "进行中" [ref=e60] [cursor=pointer]
+            - button "已完结" [ref=e61] [cursor=pointer]
+          - generic [ref=e62]:
+            - generic [ref=e63] [cursor=pointer]:
+              - generic [ref=e64]: 您好！我是智能客服助手，请问如何修改我的...
+              - generic [ref=e65]: 您好！我是智能客服助手，请问如何修改我的个人资料？
+              - generic [ref=e66]:
+                - generic [ref=e67]: 10:45
+                - generic [ref=e68]: 进行中
+            - generic [ref=e69] [cursor=pointer]:
+              - generic [ref=e70]: 客户反馈无法查看历史订单详情，需要协助解...
+              - generic [ref=e71]: 客户反馈无法查看历史订单详情，需要协助解决...
+              - generic [ref=e72]:
+                - generic [ref=e73]: 10:30
+                - generic [ref=e74]: 进行中
+            - generic [ref=e75] [cursor=pointer]:
+              - generic [ref=e76]: 用户询问退款流程和预计到账时间...
+              - generic [ref=e77]: 用户询问退款流程和预计到账时间...
+              - generic [ref=e78]:
+                - generic [ref=e79]: 10:15
+                - generic [ref=e80]: 进行中
+            - generic [ref=e81] [cursor=pointer]:
+              - generic [ref=e82]: 多次输入错误密码导致账户被锁定，请求解锁...
+              - generic [ref=e83]: 多次输入错误密码导致账户被锁定，请求解锁...
+              - generic [ref=e84]:
+                - generic [ref=e85]: 09:45
+                - generic [ref=e86]: 已完结
+            - generic [ref=e87] [cursor=pointer]:
+              - generic [ref=e88]: 客户建议增加批量导出功能，已记录并反馈....
+              - generic [ref=e89]: 客户建议增加批量导出功能，已记录并反馈...
+              - generic [ref=e90]:
+                - generic [ref=e91]: 09:20
+                - generic [ref=e92]: 已完结
+            - generic [ref=e93] [cursor=pointer]:
+              - generic [ref=e94]: 企业用户申请开具增值税专用发票...
+              - generic [ref=e95]: 企业用户申请开具增值税专用发票...
+              - generic [ref=e96]:
+                - generic [ref=e97]: 昨天
+                - generic [ref=e98]: 已完结
+            - generic [ref=e99] [cursor=pointer]:
+              - generic [ref=e100]: 我的电脑无法开机，按电源键没有任何反应....
+              - generic [ref=e101]: 我的电脑无法开机，按电源键没有任何反应...
+              - generic [ref=e102]:
+                - generic [ref=e103]: 11:00
+                - generic [ref=e104]: 进行中
+            - generic [ref=e105] [cursor=pointer]:
+              - generic [ref=e106]: Outlook收不到邮件，请帮忙排查.....
+              - generic [ref=e107]: Outlook收不到邮件，请帮忙排查...
+              - generic [ref=e108]:
+                - generic [ref=e109]: 10:58
+                - generic [ref=e110]: 进行中
+            - generic [ref=e111] [cursor=pointer]:
+              - generic [ref=e112]: 打印机无法连接到网络，显示离线状态...
+              - generic [ref=e113]: 打印机无法连接到网络，显示离线状态...
+              - generic [ref=e114]:
+                - generic [ref=e115]: 10:50
+                - generic [ref=e116]: 进行中
+        - generic [ref=e117]:
+          - generic [ref=e118]:
+            - img [ref=e120]
+            - generic [ref=e122]: AI助手
+          - generic [ref=e123]:
+            - generic [ref=e125]:
+              - img [ref=e127]
+              - paragraph [ref=e129]: 输入您的问题开始咨询
+            - generic [ref=e131]:
+              - textbox "输入您的问题..." [ref=e132]
+              - button "发送" [disabled] [ref=e134]
+  - generic [ref=e29]:
+    - generic "Toggle devtools panel" [ref=e30] [cursor=pointer]:
+      - img [ref=e31]
+    - generic "Toggle Component Inspector" [ref=e36] [cursor=pointer]:
+      - img [ref=e37]

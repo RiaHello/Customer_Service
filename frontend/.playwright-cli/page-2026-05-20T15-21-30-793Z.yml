@@ -1,0 +1,48 @@
+- generic [ref=e1]:
+  - generic [ref=e3]:
+    - banner [ref=e41]:
+      - generic [ref=e43]:
+        - generic [ref=e44]: 🤖
+        - generic [ref=e45]: 智能客服系统
+      - navigation [ref=e46]:
+        - link "员工端" [ref=e47] [cursor=pointer]:
+          - /url: /employee
+        - link "坐席端" [active] [ref=e48] [cursor=pointer]:
+          - /url: /agent
+        - link "知识库管理" [ref=e49] [cursor=pointer]:
+          - /url: /knowledge
+      - generic [ref=e51]:
+        - generic [ref=e52]: 李四
+        - button "退出" [ref=e53] [cursor=pointer]
+    - main [ref=e4]:
+      - generic [ref=e135]:
+        - generic [ref=e136]:
+          - heading "工单列表" [level=2] [ref=e138]
+          - generic [ref=e139]:
+            - button "待处理" [ref=e140] [cursor=pointer]
+            - button "处理中" [ref=e141] [cursor=pointer]
+            - button "已完成" [ref=e142] [cursor=pointer]
+          - generic [ref=e143]:
+            - generic [ref=e144] [cursor=pointer]:
+              - generic [ref=e146]: "#2001 员工"
+              - paragraph [ref=e148]: 我的电脑无法开机，按电源键没有任何反应....
+              - generic [ref=e150]: 等待 12 小时
+            - generic [ref=e151] [cursor=pointer]:
+              - generic [ref=e153]: "#2002 员工"
+              - paragraph [ref=e155]: Outlook收不到邮件，请帮忙排查.....
+              - generic [ref=e157]: 等待 12 小时
+            - generic [ref=e158] [cursor=pointer]:
+              - generic [ref=e160]: "#2003 员工"
+              - paragraph [ref=e162]: 打印机无法连接到网络，显示离线状态......
+              - generic [ref=e164]: 等待 12 小时
+        - generic [ref=e166]:
+          - generic [ref=e167]: 📥
+          - paragraph [ref=e168]: 请从左侧选择工单
+        - generic [ref=e170]:
+          - generic [ref=e171]: ✨
+          - paragraph [ref=e172]: 选择工单后显示 AI 辅助信息
+  - generic [ref=e29]:
+    - generic "Toggle devtools panel" [ref=e30] [cursor=pointer]:
+      - img [ref=e31]
+    - generic "Toggle Component Inspector" [ref=e36] [cursor=pointer]:
+      - img [ref=e37]

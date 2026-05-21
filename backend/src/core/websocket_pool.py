@@ -10,7 +10,6 @@ from datetime import UTC, datetime
 from typing import Any
 
 from fastapi import WebSocket
-
 from pycore.core import get_logger
 
 logger = get_logger()

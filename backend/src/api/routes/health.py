@@ -2,7 +2,6 @@
 from datetime import datetime
 
 from fastapi.responses import JSONResponse
-
 from pycore.api import APIRouter
 
 router = APIRouter(tags=["health"])

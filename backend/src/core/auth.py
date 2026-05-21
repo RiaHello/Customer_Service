@@ -7,8 +7,8 @@ from datetime import UTC, datetime, timedelta
 from typing import Any
 
 from jose import JWTError, jwt
-
 from pycore.core import get_logger
+
 from src.core.config import settings
 
 logger = get_logger()

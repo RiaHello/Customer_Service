@@ -43,19 +43,19 @@ async def create_test_users():
     test_users = [
         {
             "username": "employee1",
-            "password": "password123",
+            "password": "123456",
             "nickname": "测试员工",
             "role": "employee"
         },
         {
             "username": "agent1",
-            "password": "password123",
+            "password": "123456",
             "nickname": "测试坐席",
             "role": "agent"
         },
         {
             "username": "admin",
-            "password": "admin123",
+            "password": "123456",
             "nickname": "系统管理员",
             "role": "admin"
         }
@@ -159,9 +159,9 @@ async def init_database():
         print("数据库初始化完成！")
         print("=" * 60)
         print("\n测试账号信息：")
-        print("  员工账号: employee1 / password123")
-        print("  坐席账号: agent1 / password123")
-        print("  管理员账号: admin / admin123")
+        print("  员工账号: employee1 / 123456")
+        print("  坐席账号: agent1 / 123456")
+        print("  管理员账号: admin / 123456")
         print("\n注意：以上账号仅用于开发测试，生产环境请修改密码。")
 
     except Exception as e:

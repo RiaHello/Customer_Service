@@ -5,9 +5,9 @@
 """
 from fastapi import Request
 from fastapi.responses import JSONResponse
+from pycore.core import get_logger
 from starlette.middleware.base import BaseHTTPMiddleware
 
-from pycore.core import get_logger
 from src.core.auth import verify_token
 
 logger = get_logger()
@@ -34,6 +34,10 @@ class AuthMiddleware(BaseHTTPMiddleware):
             Response: 响应对象
         """
         path = request.url.path
+
+        # 放行 OPTIONS 预检请求
+        if request.method == "OPTIONS":
+            return await call_next(request)
 
         # 白名单路径直接放行
         if path in WHITELIST_PATHS:

@@ -1,5 +1,5 @@
 export interface User {
-  id: number
+  user_id: number
   username: string
   display_name?: string
   role: string
@@ -12,7 +12,7 @@ export interface LoginRequest {
 }
 
 export interface LoginResponse {
-  access_token: string
+  token: string
   token_type: string
   user: User
 }

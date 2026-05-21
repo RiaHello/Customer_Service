@@ -1,0 +1,67 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - generic [ref=e6]:
+        - generic [ref=e7]: 🤖
+        - generic [ref=e8]: 智能客服系统
+      - navigation [ref=e9]:
+        - link "员工端" [ref=e10] [cursor=pointer]:
+          - /url: /employee
+        - link "坐席端" [ref=e11] [cursor=pointer]:
+          - /url: /agent
+        - link "知识库管理" [ref=e12] [cursor=pointer]:
+          - /url: /knowledge
+      - generic [ref=e14]:
+        - generic [ref=e15]: 测试员工
+        - button "退出" [ref=e16] [cursor=pointer]
+    - main [ref=e17]:
+      - generic [ref=e19]:
+        - generic [ref=e20]:
+          - generic [ref=e21]:
+            - heading "知识库管理" [level=1] [ref=e22]
+            - paragraph [ref=e23]: 管理和维护 AI 客服的知识文档
+          - generic [ref=e24]:
+            - generic [ref=e25]:
+              - img [ref=e26]
+              - textbox "搜索文档..." [ref=e29]
+            - button "上传文档" [ref=e30] [cursor=pointer]:
+              - img [ref=e31]
+              - text: 上传文档
+        - generic [ref=e33]:
+          - generic [ref=e34]:
+            - generic [ref=e35]: 总文档数
+            - generic [ref=e36]:
+              - generic [ref=e37]: "0"
+              - generic [ref=e38]: 篇
+          - generic [ref=e39]:
+            - generic [ref=e40]: 已索引
+            - generic [ref=e41]:
+              - generic [ref=e42]: "0"
+              - generic [ref=e43]: 篇
+          - generic [ref=e44]:
+            - generic [ref=e45]: 处理中
+            - generic [ref=e46]:
+              - generic [ref=e47]: "0"
+              - generic [ref=e48]: 篇
+          - generic [ref=e49]:
+            - generic [ref=e50]: QA 条目
+            - generic [ref=e51]:
+              - generic [ref=e52]: "0"
+              - generic [ref=e53]: 条
+        - table [ref=e55]:
+          - rowgroup [ref=e56]:
+            - row "文档名称 类型 大小 状态 上传时间 操作" [ref=e57]:
+              - columnheader "文档名称" [ref=e58]
+              - columnheader "类型" [ref=e59]
+              - columnheader "大小" [ref=e60]
+              - columnheader "状态" [ref=e61]
+              - columnheader "上传时间" [ref=e62]
+              - columnheader "操作" [ref=e63]
+          - rowgroup [ref=e64]:
+            - row "暂无文档，点击右上角上传按钮添加文档" [ref=e65]:
+              - cell "暂无文档，点击右上角上传按钮添加文档" [ref=e66]
+  - generic [ref=e67]:
+    - generic "Toggle devtools panel" [ref=e68] [cursor=pointer]:
+      - img [ref=e69]
+    - generic "Toggle Component Inspector" [ref=e74] [cursor=pointer]:
+      - img [ref=e75]

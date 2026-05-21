@@ -6,7 +6,7 @@ export const mockAccounts = [
     username: 'employee1',
     password: '123456',
     user: {
-      id: 1,
+      user_id: 1,
       username: 'employee1',
       display_name: '张三',
       role: 'employee',
@@ -17,7 +17,7 @@ export const mockAccounts = [
     username: 'agent1',
     password: '123456',
     user: {
-      id: 2,
+      user_id: 2,
       username: 'agent1',
       display_name: '李四',
       role: 'agent',
@@ -28,7 +28,7 @@ export const mockAccounts = [
     username: 'admin',
     password: '123456',
     user: {
-      id: 3,
+      user_id: 3,
       username: 'admin',
       display_name: '王五',
       role: 'admin',
@@ -47,7 +47,7 @@ export const loginSuccessResponse = (username: string): ApiResponse<LoginRespons
     code: 200,
     message: 'success',
     data: {
-      access_token: `mock-token-${username}-${Date.now()}`,
+      token: `mock-token-${username}-${Date.now()}`,
       token_type: 'Bearer',
       user: account.user
     }
