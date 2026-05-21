@@ -1,0 +1,30 @@
+# LLM 配置文件
+# 用于配置阿里云百炼平台的模型参数
+
+llm:
+  # LLM 模型配置
+  model: qwen-plus
+  temperature: 0.7
+  max_tokens: 2000
+  top_p: 0.9
+
+embedding:
+  # Embedding 模型配置
+  model: text-embedding-v2
+  dimension: 1536
+  # text-embedding-v4 支持的维度：2048/1536/1024/768/512/256/128/64
+  # text-embedding-v3 支持的维度：1024/768/512/256/128/64
+  # text-embedding-v2 默认维度：1536
+
+reranker:
+  # Reranker 模型配置
+  model: gte-rerank
+  top_k: 3
+  # qwen3-rerank: 文本重排序模型
+  # gte-rerank: 通用文本嵌入重排序模型
+
+retry:
+  # 重试配置
+  max_retries: 3
+  retry_delay: 1.0  # 秒
+  backoff_factor: 2.0  # 指数退避因子

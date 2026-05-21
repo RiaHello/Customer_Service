@@ -20,9 +20,6 @@ httpx>=0.25.0
 # WebSocket
 websockets>=12.0
 
-# 阿里云百炼 SDK
-dashscope>=1.14.0
-
 # 工具库
 python-dotenv>=1.0.0
 pyyaml>=6.0.0
